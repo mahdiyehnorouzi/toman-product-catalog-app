@@ -4,6 +4,8 @@ import { getCategories, getSuppliers, type Category, type Supplier } from "../..
 import type { ProductFormValues, ProductStatus } from "../../types";
 
 const PRODUCT_STATUSES: ProductStatus[] = ["Active", "Inactive", "Discontinued"];
+const selectBaseClasses =
+  "block w-full appearance-none rounded-xl border border-gray-200 bg-gradient-to-br from-white to-indigo-50/40 pr-3 pl-10 py-2.5 text-sm font-medium text-gray-800 shadow-sm transition duration-200 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-1 focus:ring-offset-white hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md";
 
 interface ProductFormProps {
   register: UseFormRegister<ProductFormValues>;
@@ -63,32 +65,44 @@ export function ProductForm({ register, errors }: ProductFormProps) {
       </div>
 
       <div>
-  <label
-    htmlFor="category"
-    className="block text-sm font-medium text-gray-700"
-  >
-    دسته بندی
-  </label>
+        <label
+          htmlFor="category"
+          className="block text-sm font-medium text-gray-700"
+        >
+          دسته بندی
+        </label>
 
-  <select
-    id="category"
-    {...register("category")}
-    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-  >
-    <option value="">انتخاب دسته بندی</option>
-    {categories.map((cat) => (
-      <option key={cat.id} value={cat.name}>
-        {cat.name}
-      </option>
-    ))}
-  </select>
+        <div className="relative mt-1">
+          <select
+            id="category"
+            {...register("category")}
+            className={selectBaseClasses}
+          >
+            <option value="">انتخاب دسته بندی</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.name}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-indigo-500 opacity-80"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.6}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+          </svg>
+        </div>
 
-  {errors.category && (
-    <p className="mt-1 text-sm text-red-600">
-      {errors.category.message}
-    </p>
-  )}
-</div>
+        {errors.category && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.category.message}
+          </p>
+        )}
+      </div>
 
 
 
@@ -207,18 +221,30 @@ export function ProductForm({ register, errors }: ProductFormProps) {
         >
           وضعیت
         </label>
-        <select
-          id="status"
-          {...register("status")}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-        >
-          <option value="">انتخاب وضعیت</option>
-          {PRODUCT_STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
+        <div className="relative mt-1">
+          <select
+            id="status"
+            {...register("status")}
+            className={selectBaseClasses}
+          >
+            <option value="">انتخاب وضعیت</option>
+            {PRODUCT_STATUSES.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-indigo-500 opacity-80"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.6}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+          </svg>
+        </div>
         {errors.status && (
           <p className="mt-1 text-sm text-red-600">{errors.status.message}</p>
         )}
@@ -231,19 +257,31 @@ export function ProductForm({ register, errors }: ProductFormProps) {
         >
           تامین کننده (اختیاری)
         </label>
-        <select
-          id="supplier"
-          {...register("supplier")}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-        >
-          <option value="">انتخاب تامین کننده</option>
-          {Array.isArray(suppliers) &&
-             suppliers.map((sup) => (
-               <option key={sup.id} value={sup.name}>
-                  {sup.name}
-               </option>
-          ))}
-        </select>
+        <div className="relative mt-1">
+          <select
+            id="supplier"
+            {...register("supplier")}
+            className={selectBaseClasses}
+          >
+            <option value="">انتخاب تامین کننده</option>
+            {Array.isArray(suppliers) &&
+               suppliers.map((sup) => (
+                 <option key={sup.id} value={sup.name}>
+                    {sup.name}
+                 </option>
+            ))}
+          </select>
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-indigo-500 opacity-80"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.6}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+          </svg>
+        </div>
         {errors.supplier && (
           <p className="mt-1 text-sm text-red-600">
             {errors.supplier.message}

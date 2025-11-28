@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+html {
+    direction: rtl;
+    text-align: right;
+  }

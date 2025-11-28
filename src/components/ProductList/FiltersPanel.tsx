@@ -7,6 +7,8 @@ import type { ProductStatus } from "../../types";
 import type { Category } from "../../api/products";
 
 const productStatuses: ProductStatus[] = ["Active", "Inactive", "Discontinued"];
+const selectBaseClasses =
+  "block w-full appearance-none rounded-xl border border-gray-200 bg-gradient-to-br from-white to-indigo-50/40 pr-3 pl-10 py-2.5 text-sm font-medium text-gray-800 shadow-sm transition duration-200 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-1 focus:ring-offset-white hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md";
 
 export function FiltersPanel() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -105,42 +107,61 @@ export function FiltersPanel() {
           <label htmlFor="category" className="block text-sm font-medium text-gray-700">
             دسته‌بندی
           </label>
-          <select
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-          >
-            <option value="">همه</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.name}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
+          <div className="relative mt-1">
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className={selectBaseClasses}
+            >
+              <option value="">همه</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+            <svg
+              aria-hidden="true"
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-indigo-500 opacity-80"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.6}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700">وضعیت</label>
-          <div className="mt-1 space-y-2">
-            {productStatuses.map((s) => (
-              <div key={s} className="flex items-center">
-                <input
-                  id={`status-${s}`}
-                  type="checkbox"
-                  value={s}
-                  checked={statuses.includes(s)}
-                  onChange={handleStatusChange}
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
+          <div className="mt-1 rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm">
+            <div className="space-y-2">
+              {productStatuses.map((s) => (
                 <label
+                  key={s}
                   htmlFor={`status-${s}`}
-                  className="mr-2 block text-sm text-gray-900"
+                  className="group relative flex cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md"
                 >
-                  {s}
+                  <input
+                    id={`status-${s}`}
+                    type="checkbox"
+                    value={s}
+                    checked={statuses.includes(s)}
+                    onChange={handleStatusChange}
+                    className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                  />
+                  <span className="flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 text-xs font-semibold text-transparent transition peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-600 group-hover:border-indigo-400 group-hover:text-indigo-400">
+                    ✓
+                  </span>
+                  <span className="flex-1 pr-3 text-sm font-medium text-gray-800 group-hover:text-indigo-700 peer-checked:text-indigo-700">
+                    {s}
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-transparent transition peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2"></span>
                 </label>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
