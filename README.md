@@ -61,47 +61,57 @@ Built as part of a **Frontend Engineer assignment**.
 
 ## 📁 Project Structure
 
+```bash
 src/
 ├── api/
-│ ├── client.ts → apiFetch with timeout + error handling
-│ └── products.ts → product APIs (CRUD + categories + suppliers)
+│   ├── client.ts            # apiFetch with timeout + error handling
+│   └── products.ts          # product APIs (CRUD + categories + suppliers)
 │
 ├── components/
-│ ├── ProductForm/ → ProductForm component
-│ ├── ProductList/ → ProductRow + ProductList + FiltersPanel
-│ └── ui/Modal.tsx → Reusable modal component
+│   ├── ProductForm/         # ProductForm component
+│   ├── ProductList/         # ProductRow + ProductList + FiltersPanel
+│   └── ui/
+│       └── Modal.tsx        # Reusable modal component
 │
 ├── hooks/
-│ ├── useCreateProductForm.ts
-│ ├── useDebounce.ts
-│ └── useInfiniteScroll.ts
+│   ├── useCreateProductForm.ts
+│   ├── useDebounce.ts
+│   └── useInfiniteScroll.ts
 │
 ├── pages/
-│ ├── CatalogPage.tsx
-│ └── CreateProductPage.tsx
+│   ├── CatalogPage.tsx
+│   └── CreateProductPage.tsx
 │
 ├── types/
-│ └── index.ts → Zod schema + type definitions
+│   └── index.ts             # Zod schema + type definitions
 │
 ├── routes.tsx
 ├── App.tsx
 └── main.tsx
+```
 
 ---
 
 ## ▶️ Run Locally
 
 ### 1. Install dependencies
+
+1. Clone the repo:
+```bash
+git clone https://github.com/your-username/toman-product-catalog-app.git
+cd toman-product-catalog-app
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-##  Run Locally
-
+3. Run the app:
 ```bash
 npm run dev
 ```
-then visit: http://localhost:5173
+Opens: [http://localhost:5173](http://localhost:5173)
 
 
 ##  Expected endpoints
